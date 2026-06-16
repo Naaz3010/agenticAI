@@ -159,13 +159,13 @@ if generate_plan:
         })
 
         if "error" in agent_result:
-        st.error(agent_result["error"])
+            st.error(agent_result["error"])
 
-        st.info(
-            "Try increasing your budget or selecting another destination."
-        )
+            st.info(
+                "Try increasing your budget or selecting another destination."
+            )
     
-        st.stop()
+            st.stop()
 
         final_output = generate_final_output(
             agent_result,
