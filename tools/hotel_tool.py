@@ -17,4 +17,17 @@ def hotel_recommendation_tool(city: str, min_stars: int = 3, max_price: int = No
 
     results.sort(key=lambda x: (-x["stars"], x["price_per_night"]))
 
-    return results[:3] if results else {"message": "No hotels found"}
+    if results:
+        return results[:3]
+
+    all_hotels = [
+        h for h in hotels_data
+        if h["city"].lower() == city.lower()
+    ]
+    
+    all_hotels.sort(key=lambda x: x["price_per_night"])
+    
+    return {
+        "message": "No hotels found within budget",
+        "closest_option": all_hotels[0] if all_hotels else None
+    }
