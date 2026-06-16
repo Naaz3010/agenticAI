@@ -125,7 +125,7 @@ with col3:
 
 with col4:
     budget = st.number_input(
-        "Max Hotel Budget",
+        "Max Hotel Budget per day",
         min_value=1000,
         max_value=20000,
         value=5000,
