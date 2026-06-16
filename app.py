@@ -158,6 +158,15 @@ if generate_plan:
             "longitude": longitude
         })
 
+        if "error" in agent_result:
+        st.error(agent_result["error"])
+
+        st.info(
+            "Try increasing your budget or selecting another destination."
+        )
+    
+        st.stop()
+
         final_output = generate_final_output(
             agent_result,
             days
