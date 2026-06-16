@@ -23,12 +23,17 @@ def run_travel_agent(user_query: dict):
     })
     chosen_flight = flights["cheapest_flight"]
 
-    # Hotel selection
     hotels = hotel_recommendation_tool.invoke({
         "city": destination,
         "min_stars": 3,
         "max_price": budget
     })
+
+    if isinstance(hotels, dict) and "message" in hotels:
+        return {
+            "error": f"No hotels available within ₹{budget} budget in {destination}"
+        }
+
     chosen_hotel = hotels[0]
 
     # Places
